@@ -2,6 +2,7 @@
 
 ### Install Repo
 ``` shell
+npm -i -g yarn
 git clone https://github.com/tadjohnston/monorepos.git
 cd monorepos
 ```
