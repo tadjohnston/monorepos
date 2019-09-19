@@ -64,6 +64,17 @@ yarn add typescript react react-dom @types/react @types/react-dom --dev
 }
 ```
 
+### package.json
+``` js
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "yarn tsc -b",
+    "build:watch": "yarn build -w",
+    "test": "yarn jest",
+    "test:watch": "yarn run test --watch"
+  },
+```
+
 ### jest.config.base.js
 ``` js
 module.exports = {
@@ -209,17 +220,6 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
   }
 }
-```
-
-### package.json
-``` js
-  "scripts": {
-    "clean": "rm -rf build",
-    "build": "yarn tsc -b",
-    "build:watch": "yarn build -w",
-    "test": "yarn jest",
-    "test:watch": "yarn run test --watch"
-  },
 ```
 
 ### tsconfig.eslint.json
