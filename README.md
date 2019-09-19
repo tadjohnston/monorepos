@@ -7,22 +7,6 @@ git clone https://github.com/tadjohnston/monorepos.git
 cd monorepos
 ```
 
-### Things we will cover
-1. the package.json file
-  * dependencies
-  * scripts
-  * name
-  * modules and main
-1. create a common place for packages
-1. setup yarn workspaces
-1. setup tsconfigs
-1. setup eslint
-1. setup lerna
-1. add test components
-1. setup compiler
-1. working locally with them (yarn linking)
-1. publishing
-
 ### tsconfig.json
 ``` js
 {
@@ -71,6 +55,54 @@ cd monorepos
   ],
   "version": "independent",
   "useWorkspaces": true
+}
+```
+
+### jest.config.base.js
+``` js
+module.exports = {
+  preset: 'ts-jest',
+  globals: {
+    'ts-jest': {
+      tsConfig: {
+        allowJs: true
+      }
+    }
+  },
+  roots: [
+    '<rootDir>/src'
+  ],
+  setupFiles: [
+    'test/setup.ts'
+  ],
+  testMatch: [
+    '**/*-test.ts?(x)',
+  ],
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.(t|j)sx?$': 'ts-jest',
+    '^.+\\.graphql$': 'jest-transform-graphql'
+  },
+
+  collectCoverage: false,
+  collectCoverageFrom: [
+    '**/src/**/*.ts',
+    '**/src/**/*.tsx',
+    '!src/**/*-test.ts',
+    '!src/**/*-test.tsx',
+    '!build/**/*',
+    '!**/__stories__/**',
+    '!**/node_modules/**',
+    '!**/index.ts',
+    '!src/**/const.ts',
+    '!src/**/*.d.ts'
+  ],
+  coverageDirectory: './coverage',
+  testPathIgnorePatterns: [
+    'node_modules',
+    'build'
+  ],
+  verbose: true
 }
 ```
 
@@ -171,6 +203,17 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
   }
 }
+```
+
+### package.json
+``` js
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "yarn tsc -b",
+    "build:watch": "yarn build -w",
+    "test": "yarn jest",
+    "test:watch": "yarn run test --watch"
+  },
 ```
 
 ### tsconfig.eslint.json
