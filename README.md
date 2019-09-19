@@ -7,6 +7,11 @@ git clone https://github.com/tadjohnston/monorepos.git
 cd monorepos
 ```
 
+### Install packages
+``` shell
+yarn add typescript react react-dom @types/react @types/react-dom
+```
+
 ### tsconfig.json
 ``` js
 {
