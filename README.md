@@ -9,7 +9,8 @@ cd monorepos
 
 ### Install packages
 ``` shell
-yarn add typescript react react-dom @types/react @types/react-dom
+yarn add typescript 
+yarn add react react-dom @types/react @types/react-dom
 ```
 
 ### tsconfig.json
